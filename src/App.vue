@@ -1,30 +1,56 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import axios from "axios";
+import { store } from "./store";
+
+export default {
+  data() {
+    return {
+      store,
+    };
+  },
+
+  created() {
+    axios.get(store.api.baseUrl + "projects").then((res) => {
+      store.projects = res.data.data;
+    });
+  },
+};
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="container py-5">
+    <div class="row g-3">
+      <div v-for="project in store.projects" class="col-3">
+        <div class="card h-100">
+          <img
+            class="card-img-top"
+            :src="
+              project.thumb
+                ? project.thumb
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIU04WE68MpK7kIJ_kHfCEY5NFXNegUYUJ8-pFSM7uEg&s'
+            "
+            alt=""
+          />
+          <div class="card-body">
+            <h5>{{ project.title }}</h5>
+            <span v-for="technology in project.technologies">
+              - {{ technology.label }}
+            </span>
+            <div class="text-end">
+              <div
+                class="badge"
+                :style="'background-color:' + project.type.color"
+              >
+                <p class="m-0">{{ project.type.label }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<style lang="scss">
+@use "./src/style/general.scss";
 </style>
