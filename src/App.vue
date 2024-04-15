@@ -1,6 +1,6 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
-import ProjectList from "./components/ProjectList.vue";
+import ProjectList from "./pages/ProjectList.vue";
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
 <template>
   <app-header></app-header>
   <div class="container py-5">
-    <project-list></project-list>
+    <router-view></router-view>
   </div>
 </template>
 

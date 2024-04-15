@@ -5,14 +5,14 @@
     <div class="nav-bar d-flex justify-content-between align-items-center">
       <div class="nav-link d-flex gap-4">
         <div class="logo">
-          <a href="#">
+          <router-link :to="{ name: 'home' }">
             <strong>Boolfolio</strong>
-          </a>
+          </router-link>
         </div>
         <div class="link-box d-flex gap-3">
-          <a href="">
+          <router-link :to="{ name: 'project' }">
             <div class="link">Projects</div>
-          </a>
+          </router-link>
           <a href="">
             <div class="link">Types</div>
           </a>

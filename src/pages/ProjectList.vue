@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 import { store } from "../store";
-import AppCard from "./AppCard.vue";
+import AppCard from "../components/AppCard.vue";
 
 export default {
   data() {
@@ -74,4 +74,9 @@ export default {
 
 <style lang="scss">
 @use "./src/style/general.scss";
+
+.card:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
 </style>
