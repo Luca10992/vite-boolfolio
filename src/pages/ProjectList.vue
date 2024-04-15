@@ -31,7 +31,10 @@ export default {
   <div class="row row-cols-4 g-3 mb-2">
     <!-- <app-card v-for="project in store.projects" :project="project"></app-card> -->
     <div class="col" v-for="project in store.projects">
-      <div class="card h-100">
+      <routerLink
+        :to="{ name: 'project-detail', params: { id: project.id } }"
+        class="card h-100"
+      >
         <img
           class="card-img-top"
           :src="
@@ -55,7 +58,7 @@ export default {
             </div>
           </div>
         </div>
-      </div>
+      </routerLink>
     </div>
   </div>
   <nav aria-label="Page navigation">
